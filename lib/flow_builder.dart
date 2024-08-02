@@ -146,6 +146,9 @@ class _FlowBuilderState<T> extends State<FlowBuilder<T>> {
   }
 
   Future<bool> _pop() async {
+    if (ModalRoute.of(context)?.isCurrent == false) {
+      return false;
+    }
     if (mounted) {
       final popHandled = await _navigator?.maybePop() ?? false;
       if (popHandled) return true;
